@@ -1,11 +1,102 @@
 <html>
-  <head>
-  </head>
-  <body>
-welcome on Tiny Sensor web firmware generator.
-Choose the sensors you implemented on the hardware, provide some identification information for your data, and generate a ready-to-flash optimized firmware.
 
-<a href="build.php">Go!</a>
-  </body>
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <style type="text/css">
+    .vertical-center {
+
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome on Tiny Sensor firmware generation web application</h1>
+    <div class="ustify-content-between">
+      <p class="lead">
+        Choose the sensors you implemented on the hardware, provide some identification information for your data, and
+        generate a ready-to-flash optimized firmware.
+      </p>
+      <p class="text-warning">For now, the only one supported MCU is the <a target="_new"
+          href="https://www.microchip.com/wwwproducts/en/ATtiny84A">Microchip ATTiny84a</a>.</p>
+      <p class="text-warning">For now, the only one supported protocol is an implementation of the <a target="_new"
+          href="oregonscientific.com">Oregon Scientific</a> protocol.</p>
+    </div>
+
+
+    <div class="col-md-8 order-md-1">
+      <h2>TinySensor configuration</h2>
+      <form action="page2.php" method="get" class="needs-validation" novalidate>
+        <h3>Environment sensors</h3>
+
+        <hr class="mb-4">
+
+        <h4>Bosch</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="BMX_280_NONE" name="BMX_280_SUPPORT" type="radio" class="custom-control-input" checked
+                  required>
+                <label class="custom-control-label" for="BMX_280_NONE">None<p></p></label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="BMX_280_BME" name="BMX_280_SUPPORT" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="BMX_280_BME">Bosch BME280 <a target="_new"
+                    href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf">(?)</a>
+                  <p>i²C/SPI temperature, pressure and relative humidity sensor</p>
+                </label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="BME_280_BMP" name="BMX_280_SUPPORT" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="BME_280_BMP">Bosch BMP280 <a target="_new"
+                    href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf">(?)</a>
+                  <p>I²C/SPI temperature and pressure sensor</p>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <h4>Texas Instrument</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="LM35">
+              <label class="custom-control-label" for="LM35">Texas Instrument LM35<a target="_new"
+                  href="https://www.ti.com/lit/ds/symlink/lm35.pdf">(?)<a>
+                    <p>Analog temperature sensor</p></label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="mb-4">
+        <h4>Maxim Integrated</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="save-info">
+              <label class="custom-control-label" for="save-info">Maxim DS180B20 <a target="_new"
+                  href="https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf">(?)</a>
+                <p>OneWire temperature sensor</p>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to data indentification</button>
+      </form>
+    </div>
+  </div>
+</body>
 
 </html>
