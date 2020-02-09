@@ -24,6 +24,7 @@
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 #include <string.h>
+#include <ReadVcc.h>
 
 #include <protocol/Oregon.h>
 Oregon oregon;
@@ -36,6 +37,34 @@ Oregon oregon;
 #include <SparkFunBME280.h>
 BME280 bmX280;
 #endif
+
+#include <Arduino.h>
+#include <x10rf.h>
+x10rf myx10 = x10rf(TX_RADIO_PIN, LED_PIN, 3);
+
+#define rfxSensorID 12
+
+void emitBatteryState()
+{
+
+	ADCSRA |= (1 << ADEN);
+	_delay_ms(2);
+
+	// discard first read
+	int rawVccRead = analogRead(BAT_SENSOR_PIN);
+
+	rawVccRead = analogRead(BAT_SENSOR_PIN);
+	rawVccRead += analogRead(BAT_SENSOR_PIN);
+	rawVccRead += analogRead(BAT_SENSOR_PIN);
+	rawVccRead += analogRead(BAT_SENSOR_PIN);
+	rawVccRead /= 4;
+
+	ADCSRA &= ~(1 << ADEN);
+
+	double MV_PER_ADC_STEPS = (ACTUAL_VCC_MV / 1024.);
+	long voltage = round(MV_PER_ADC_STEPS * rawVccRead);
+	myx10.RFXmeter(rfxSensorID, 0, voltage);
+}
 
 void UseLessPowerAsPossible()
 {
@@ -54,10 +83,10 @@ void UseLessPowerAsPossible()
 	PRR &= ~_BV(PRTIM1);
 
 	// no analog p. 129, 146, 131
-	PRR &= ~_BV(PRADC);
-	ADCSRA &= ~(1 << ADEN);
-	ACSR |= (1 << ACD);
-	DIDR0 |= (1 << ADC2D) | (1 << ADC1D); // buffers
+	// PRR &= ~_BV(PRADC);
+	// ADCSRA &= ~(1 << ADEN);
+	// ACSR |= (1 << ACD);
+	// DIDR0 |= (1 << ADC2D) | (1 << ADC1D); // buffers
 
 	// deactivate brownout detection during sleep (p.36)
 	MCUCR |= (1 << BODS) | (1 << BODSE);
@@ -99,6 +128,33 @@ void setup()
 	//Watchdog setup - 8s sleep time
 	_WD_CONTROL_REG |= (1 << WDCE) | (1 << WDE);
 	_WD_CONTROL_REG = (1 << WDP3) | (1 << WDP0) | (1 << WDIE);
+
+// adc init
+#if F_CPU > 12000000L
+// above 12mhz, prescale by 128, the highest prescaler available
+#define ADC_ARDUINO_PRESCALER B111
+#elif F_CPU >= 6000000L
+// 12 MHz / 64 ~= 188 KHz
+// 8 MHz / 64 = 125 KHz
+#define ADC_ARDUINO_PRESCALER B110
+#elif F_CPU >= 3000000L
+// 4 MHz / 32 = 125 KHz
+#define ADC_ARDUINO_PRESCALER B101
+#elif F_CPU >= 1500000L
+// 2 MHz / 16 = 125 KHz
+#define ADC_ARDUINO_PRESCALER B100
+#elif F_CPU >= 750000L
+// 1 MHz / 8 = 125 KHz
+#define ADC_ARDUINO_PRESCALER B011
+#elif F_CPU < 400000L
+// 128 kHz / 2 = 64 KHz -> This is the closest you can get, the prescaler is 2
+#define ADC_ARDUINO_PRESCALER B000
+#else							   //speed between 400khz and 750khz
+#define ADC_ARDUINO_PRESCALER B010 //prescaler of 4
+#endif
+
+	ADCSRA = (ADCSRA & ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0))) | (ADC_ARDUINO_PRESCALER << ADPS0) | (1 << ADEN);
+	// enable a2d conversions
 
 	// set output pins
 	DDRB |= _BV(TX_RADIO_PIN);
@@ -263,10 +319,11 @@ int avr_main(void)
 
 		if (shouldEmitData)
 		{
-
 			// Activate radio power
 			PORTA |= _BV(RADIO_POWER_PIN);
 			_delay_ms(2);
+
+			emitBatteryState();
 
 			// led off here, it will allow a short
 			// blink when actually emitting new data

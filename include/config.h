@@ -24,23 +24,29 @@
 // emission
 #define SLEEP_TIME_IN_SECONDS (8 * 4)
 
-/*
- * 1-wire interface is on PA3
- * Power for radio is on PA2 (sensor_vcc)
- * LED pin is PB1
- * PWM pin is PA7
- * SDA pin is PA6
- * SCL pin is PA4
- * MISO pin is PA5
- * TX radio pin is PB0
- * BAT sensor pin is PA1
- * analog sensor pin is PA0
- */
 #define LED_PIN PB1
 #define PWM_PIN PA7
 #define TX_RADIO_PIN PB0
 #define RADIO_POWER_PIN PA2
 #define BAT_SENSOR_PIN PA1
+
+
+/* 
+* actual value for 1v1 internal ref,
+* which have to be checked for each MCU
+* \see https://provideyourown.com/2012/secret-arduino-voltmeter-measure-battery-voltage/
+*
+*
+* Briefly, the reference can be obtained by 
+* `internal1.1Ref = 1.1 * Vcc1 (per voltmeter) / Vcc2 (per readVcc() function)`
+*/
+#define ACTUAL_1V1_REF_MV 1100.
+
+#ifdef BOARD_USES_3V3_STEPUP
+#define ACTUAL_VCC_MV 3280.
+#else
+#define ACTUAL_VCC_MV readVcc()
+#endif
 
 // Sensors
 #define USE_BMP280

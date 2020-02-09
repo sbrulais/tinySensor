@@ -3,12 +3,37 @@ cmake_minimum_required(VERSION 3.10)
 project(TinySensor VERSION 0.1.0)
 set (CMAKE_CXX_STANDARD 14)
 
+# Sensor type
+#
+# 0x5A, 0x5D pressure, temp, hygro (BME280)   => MODE_0 below
+# 0xEA, 0x4C temp only (BMP280, LM35, DS18B20)=> MODE_2 below
+
+# Oregon mode:
+#
+# MODE_0 0 // Temperature only [THN132N]
+# MODE_1 1 // Temperature + Humidity [THGR2228N]
+# MODE_2 2 // Temperature + Humidity + Baro() [BTHR918N]
+
+# BOARD_USES_3V3_STEPUP
+#
+# If not set, the value fo VCC is sensed directly.
+# If a stepup module is present, then Vcc value is
+# forced to 280mv 
+
+
+if(NOT SENSOR_TYPE)
 set(SENSOR_TYPE "{0x5A, 0x5D}")
+endif()
 add_definitions("-DSENSOR_TYPE=${SENSOR_TYPE}")
 
+if(NOT SENSOR_ID)
 set(SENSOR_ID "0xCB")
+endif()
 add_definitions("-DSENSOR_ID=${SENSOR_ID}")
 
+if(BOARD_USES_3V3_STEPUP)
+add_definitions("-DBOARD_USES_3V3_STEPUP=TRUE")
+endif()
 
 set(SOURCES )
 
@@ -34,6 +59,7 @@ else()
   include_directories("${CMAKE_SOURCE_DIR}/include")
   include_directories("${CMAKE_SOURCE_DIR}/third_party/ds18b20/include")
   include_directories("${CMAKE_SOURCE_DIR}/third_party/SparkFun_BME280/src/")
+  include_directories("${CMAKE_SOURCE_DIR}/third_party/x10")
 
   list(APPEND SOURCES
 
@@ -50,6 +76,9 @@ else()
 	third_party/ds18b20/src/ds18b20.c
 	third_party/ds18b20/src/onewire.c
 	third_party/ds18b20/src/romsearch.c
+  
+	
+	third_party/x10/x10rf.cpp
 
   ) 
 endif()
@@ -104,9 +133,11 @@ if(AVR)
 	message(STATUS "Current H_FUSE is set to: ${AVR_H_FUSE}")
 	message(STATUS "Current L_FUSE is set to: ${AVR_L_FUSE}")
 	message(STATUS "Build type  : ${CMAKE_BUILD_TYPE}")
-
-  message(STATUS "Sensor type : ${SENSOR_TYPE}")
-  message(STATUS "Sensor ID    :${SENSOR_ID}")
+    message(STATUS "Sensor type : ${SENSOR_TYPE}")
+    message(STATUS "Sensor ID   : ${SENSOR_ID}")
+	if(BOARD_USES_3V3_STEPUP)
+		message(STATUS "Target board uses a 3v3 stepup module")
+	endif()
 
 	add_avr_executable(tinySensor ${SOURCES} src/mainWrapper.cpp)
 	add_avr_library(unity third_party/unity/src/unity.c)

@@ -13,3 +13,6 @@
 [submodule "third_party/ds18b20"]
 	path = third_party/ds18b20
 	url = https://github.com/arcadien/avr-ds18b20.git
+[submodule "third_party/x10"]
+	path = third_party/x10
+	url = https://github.com/pyrou/X10RF-Arduino.git
