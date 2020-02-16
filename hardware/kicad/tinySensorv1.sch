@@ -50,23 +50,23 @@ $EndComp
 $Comp
 L Device:R R1
 U 1 1 5BCB91A0
-P 2400 6350
-F 0 "R1" V 2193 6350 50  0000 C CNN
-F 1 "1k" V 2284 6350 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 2330 6350 50  0001 C CNN
-F 3 "~" H 2400 6350 50  0001 C CNN
-	1    2400 6350
+P 2400 7000
+F 0 "R1" V 2193 7000 50  0000 C CNN
+F 1 "1k" V 2284 7000 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 2330 7000 50  0001 C CNN
+F 3 "~" H 2400 7000 50  0001 C CNN
+	1    2400 7000
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:LED D1
 U 1 1 5BCB9383
-P 2800 6350
-F 0 "D1" H 2792 6095 50  0000 C CNN
-F 1 "LED" H 2792 6186 50  0000 C CNN
-F 2 "LED_THT:LED_D1.8mm_W3.3mm_H2.4mm" H 2800 6350 50  0001 C CNN
-F 3 "~" H 2800 6350 50  0001 C CNN
-	1    2800 6350
+P 2800 7000
+F 0 "D1" H 2792 6745 50  0000 C CNN
+F 1 "LED" H 2792 6836 50  0000 C CNN
+F 2 "LED_THT:LED_D1.8mm_W3.3mm_H2.4mm" H 2800 7000 50  0001 C CNN
+F 3 "~" H 2800 7000 50  0001 C CNN
+	1    2800 7000
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -83,18 +83,18 @@ $EndComp
 $Comp
 L power:GND #PWR0104
 U 1 1 5BCB9757
-P 3050 6350
-F 0 "#PWR0104" H 3050 6100 50  0001 C CNN
-F 1 "GND" V 3055 6222 50  0000 R CNN
-F 2 "" H 3050 6350 50  0001 C CNN
-F 3 "" H 3050 6350 50  0001 C CNN
-	1    3050 6350
+P 3050 7000
+F 0 "#PWR0104" H 3050 6750 50  0001 C CNN
+F 1 "GND" V 3055 6872 50  0000 R CNN
+F 2 "" H 3050 7000 50  0001 C CNN
+F 3 "" H 3050 7000 50  0001 C CNN
+	1    3050 7000
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	3050 6350 2950 6350
+	3050 7000 2950 7000
 Wire Wire Line
-	2650 6350 2550 6350
+	2650 7000 2550 7000
 Wire Wire Line
 	2250 2900 2250 3100
 Wire Wire Line
@@ -166,19 +166,6 @@ SCL
 Text Label 6350 4750 0    50   ~ 0
 SDA
 NoConn ~ 6600 4850
-$Comp
-L power:GND #PWR0106
-U 1 1 5BCCC7EF
-P 6350 4950
-F 0 "#PWR0106" H 6350 4700 50  0001 C CNN
-F 1 "GND" V 6355 4822 50  0000 R CNN
-F 2 "" H 6350 4950 50  0001 C CNN
-F 3 "" H 6350 4950 50  0001 C CNN
-	1    6350 4950
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6350 4950 6600 4950
 Wire Wire Line
 	6350 4650 6600 4650
 Wire Wire Line
@@ -209,7 +196,7 @@ Wire Wire Line
 	5200 1550 5200 1700
 Wire Wire Line
 	4900 1550 4900 1700
-Text Label 1200 6300 0    50   ~ 0
+Text Label 1200 6950 0    50   ~ 0
 LED_OUT
 $Comp
 L power:PWR_FLAG #FLG0101
@@ -322,20 +309,20 @@ $EndComp
 $Comp
 L Device:Jumper JP1
 U 1 1 5BCE88B9
-P 1850 6350
-F 0 "JP1" H 1850 6614 50  0000 C CNN
-F 1 "LED Jumper" H 1850 6523 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1850 6350 50  0001 C CNN
-F 3 "~" H 1850 6350 50  0001 C CNN
-	1    1850 6350
+P 1850 7000
+F 0 "JP1" H 1850 7264 50  0000 C CNN
+F 1 "LED Jumper" H 1850 7173 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1850 7000 50  0001 C CNN
+F 3 "~" H 1850 7000 50  0001 C CNN
+	1    1850 7000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2150 6350 2250 6350
+	2150 7000 2250 7000
 Wire Wire Line
-	1200 6300 1200 6350
+	1200 6950 1200 7000
 Wire Wire Line
-	1200 6350 1550 6350
+	1200 7000 1550 7000
 $Comp
 L power:+BATT #PWR0116
 U 1 1 5BCEAF71
@@ -364,7 +351,7 @@ Wire Notes Line
 Text Notes 8200 4200 0    50   ~ 0
 433Mhz emitter connection
 Text Label 3000 1700 0    50   ~ 0
-OneWire
+OneWire_and_analog_bias
 Wire Wire Line
 	2850 1700 3000 1700
 Text Label 3000 1900 0    50   ~ 0
@@ -431,7 +418,7 @@ Battery_Checker
 Wire Wire Line
 	2850 1500 3000 1500
 Text Label 9450 850  2    50   ~ 0
-Battery_Checker
+Battery_Checker_Probe
 Wire Wire Line
 	8500 3300 8500 3350
 Wire Wire Line
@@ -473,7 +460,7 @@ Wire Wire Line
 	5250 3850 5750 3850
 Connection ~ 5750 3850
 Text Label 5400 3950 0    50   ~ 0
-OneWire
+OneWire_and_analog_bias
 Wire Notes Line
 	4050 3250 7750 3250
 Text Notes 6900 6050 0    50   ~ 0
@@ -546,39 +533,6 @@ F 1 "BMP/BME breakout" H 6827 4535 50  0000 L CNN
 F 2 "TinySensor lib:BMx280_breakout" H 6800 4650 50  0001 C CNN
 F 3 "~" H 6800 4650 50  0001 C CNN
 	1    6800 4650
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0120
-U 1 1 5BDB0112
-P 4900 5550
-F 0 "#PWR0120" H 4900 5300 50  0001 C CNN
-F 1 "GND" H 5000 5400 50  0000 R CNN
-F 2 "" H 4900 5550 50  0001 C CNN
-F 3 "" H 4900 5550 50  0001 C CNN
-	1    4900 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R4
-U 1 1 5BDB015F
-P 4900 5100
-F 0 "R4" H 4970 5146 50  0000 L CNN
-F 1 "75R" H 4970 5055 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 4830 5100 50  0001 C CNN
-F 3 "~" H 4900 5100 50  0001 C CNN
-	1    4900 5100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:CP1 C3
-U 1 1 5BDB032D
-P 4900 5400
-F 0 "C3" H 5015 5446 50  0000 L CNN
-F 1 "1u" H 5015 5355 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Radial_D4.0mm_P1.50mm" H 4900 5400 50  0001 C CNN
-F 3 "~" H 4900 5400 50  0001 C CNN
-	1    4900 5400
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -677,31 +631,15 @@ F 3 "~" H 9950 5150 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Notes Line
-	3600 5950 3600 6700
+	3600 6600 3600 7350
 Wire Notes Line
-	3600 6700 1000 6700
+	3600 7350 1000 7350
 Wire Notes Line
-	1000 6700 1000 5950
+	1000 7350 1000 6600
 Wire Notes Line
-	1000 5950 3600 5950
-Text Notes 2850 6650 0    50   ~ 0
+	1000 6600 3600 6600
+Text Notes 2850 7300 0    50   ~ 0
 Radio activity led
-Wire Notes Line rgb(0, 194, 0)
-	4450 4950 5800 4950
-Text Notes 4450 5850 0    50   ~ 0
-Optional RC filter for LM35 sensor
-Wire Notes Line rgb(0, 194, 0)
-	4450 5950 5800 5950
-Wire Notes Line rgb(114, 194, 0)
-	5800 4950 5800 5950
-Wire Notes Line rgb(0, 194, 0)
-	4450 4950 4450 5950
-Wire Notes Line
-	4050 6200 7750 6200
-Wire Notes Line
-	7750 3250 7750 6200
-Wire Notes Line
-	4050 3250 4050 6200
 $Comp
 L power:GND #PWR0123
 U 1 1 5BE989C1
@@ -806,19 +744,6 @@ F 3 "" H 8600 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:VCC #PWR04
-U 1 1 5BEA4029
-P 8600 3100
-F 0 "#PWR04" H 8600 2950 50  0001 C CNN
-F 1 "VCC" H 8617 3273 50  0000 C CNN
-F 2 "" H 8600 3100 50  0001 C CNN
-F 3 "" H 8600 3100 50  0001 C CNN
-	1    8600 3100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8600 3100 8600 3350
-$Comp
 L power:VCC #PWR06
 U 1 1 5BEA6C82
 P 7850 1950
@@ -906,15 +831,6 @@ Wire Wire Line
 	5750 4650 5750 4550
 Connection ~ 5750 4550
 Wire Wire Line
-	4700 4550 4900 4550
-Wire Wire Line
-	4700 4650 5750 4650
-Wire Wire Line
-	4900 4950 4900 4550
-Connection ~ 4900 4550
-Wire Wire Line
-	4900 4550 5050 4550
-Wire Wire Line
 	8250 1650 8450 1650
 Wire Wire Line
 	8550 1550 8550 1750
@@ -974,4 +890,168 @@ F 3 "" H 3700 2200 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3700 2200 3850 2200
+$Comp
+L Device:R R5
+U 1 1 5E3A7FCC
+P 2350 5800
+F 0 "R5" V 2143 5800 50  0000 C CNN
+F 1 "1k" V 2234 5800 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 2280 5800 50  0001 C CNN
+F 3 "~" H 2350 5800 50  0001 C CNN
+	1    2350 5800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R7
+U 1 1 5E3AA675
+P 2850 5800
+F 0 "R7" V 2643 5800 50  0000 C CNN
+F 1 "1k" V 2734 5800 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 2780 5800 50  0001 C CNN
+F 3 "~" H 2850 5800 50  0001 C CNN
+	1    2850 5800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3100 5800 3000 5800
+Wire Wire Line
+	2500 5800 2600 5800
+$Comp
+L power:GND #PWR0103
+U 1 1 5E3AD0A1
+P 3100 5800
+F 0 "#PWR0103" H 3100 5550 50  0001 C CNN
+F 1 "GND" H 3105 5627 50  0000 C CNN
+F 2 "" H 3100 5800 50  0001 C CNN
+F 3 "" H 3100 5800 50  0001 C CNN
+	1    3100 5800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 5800 2600 5450
+Connection ~ 2600 5800
+Wire Wire Line
+	2600 5800 2700 5800
+Text Label 2600 5450 0    50   ~ 0
+Battery_Checker
+Text Label 1300 5700 0    50   ~ 0
+Battery_Checker_Probe
+Wire Wire Line
+	1300 5700 1300 5800
+Wire Wire Line
+	1300 5800 2200 5800
+Wire Notes Line
+	3600 5300 3600 6100
+Wire Notes Line
+	3600 6100 1000 6100
+Wire Notes Line
+	1000 6100 1000 5300
+Wire Notes Line
+	1000 5300 3600 5300
+Text Notes 1050 5400 0    50   ~ 0
+Battery sensor voltage divider
+$Comp
+L Diode:1N4001 D2
+U 1 1 5E3C022C
+P 5300 5350
+F 0 "D2" V 5346 5271 50  0000 R CNN
+F 1 "1N4001" V 5255 5271 50  0000 R CNN
+F 2 "Diode_THT:D_DO-34_SOD68_P2.54mm_Vertical_AnodeUp" H 5300 5175 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 5300 5350 50  0001 C CNN
+	1    5300 5350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Diode:1N4001 D3
+U 1 1 5E3C0380
+P 5300 5650
+F 0 "D3" V 5346 5571 50  0000 R CNN
+F 1 "1N4001" V 5255 5571 50  0000 R CNN
+F 2 "Diode_THT:D_DO-34_SOD68_P2.54mm_Vertical_AnodeUp" H 5300 5475 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 5300 5650 50  0001 C CNN
+	1    5300 5650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR08
+U 1 1 5E3C0489
+P 5300 5950
+F 0 "#PWR08" H 5300 5700 50  0001 C CNN
+F 1 "GND" H 5305 5777 50  0000 C CNN
+F 2 "" H 5300 5950 50  0001 C CNN
+F 3 "" H 5300 5950 50  0001 C CNN
+	1    5300 5950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 5800 5300 5850
+Wire Wire Line
+	4700 4550 5050 4550
+$Comp
+L Device:R R4
+U 1 1 5E3C97C3
+P 5850 5550
+F 0 "R4" H 5920 5596 50  0000 L CNN
+F 1 "18k" H 5920 5505 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 5780 5550 50  0001 C CNN
+F 3 "~" H 5850 5550 50  0001 C CNN
+	1    5850 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper:SolderJumper_3_Open JP3
+U 1 1 5E40E358
+P 5300 4850
+F 0 "JP3" V 5254 4918 50  0000 L CNN
+F 1 "Ground ref" V 5350 4950 50  0000 L CNN
+F 2 "Jumper:SolderJumper-3_P1.3mm_Open_Pad1.0x1.5mm_NumberLabels" H 5300 4850 50  0001 C CNN
+F 3 "~" H 5300 4850 50  0001 C CNN
+	1    5300 4850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5750 4650 5300 4650
+Wire Wire Line
+	5150 4850 5150 4650
+Wire Wire Line
+	5150 4650 4700 4650
+Wire Wire Line
+	5300 5200 5300 5150
+Wire Wire Line
+	5300 5850 5850 5850
+Wire Wire Line
+	5850 5700 5850 5850
+Connection ~ 5300 5850
+Wire Wire Line
+	5300 5850 5300 5950
+Text Label 5850 5300 0    50   ~ 0
+Analog_sensor
+Wire Wire Line
+	5850 5300 5850 5400
+Connection ~ 5300 5150
+Wire Wire Line
+	5300 5150 5300 5050
+Text Label 4150 5050 0    50   ~ 0
+OneWire_and_analog_bias
+Wire Wire Line
+	4150 5150 4150 5050
+Wire Wire Line
+	4150 5150 5300 5150
+$Comp
+L power:GND #PWR?
+U 1 1 5E43F584
+P 6600 5000
+F 0 "#PWR?" H 6600 4750 50  0001 C CNN
+F 1 "GND" H 6605 4827 50  0000 C CNN
+F 2 "" H 6600 5000 50  0001 C CNN
+F 3 "" H 6600 5000 50  0001 C CNN
+	1    6600 5000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 5000 6600 4950
+Text Label 8600 3000 0    50   ~ 0
+SENSOR_VCC
+Wire Wire Line
+	8600 3000 8600 3350
 $EndSCHEMATC
