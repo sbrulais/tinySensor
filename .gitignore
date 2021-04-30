@@ -9,3 +9,5 @@ Release/
 web/data/
 volume
 hardware/kicad/fp-info-cache
+/hardware/eagle/tinySensor.b#1
+/hardware/eagle/tinySensor.s#1
